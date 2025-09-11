@@ -16,7 +16,7 @@ It identifies misconfigurations, weak credentials, and insecure deployments acro
 ---
 
 ##  Supported Protocols
-Each protocol has its own documentation in [`ForFtp/protocol_docs/`](protocol_docs):
+Each protocol has its own documentation in [`protocol_docs/`](ForFtp/protocol_docs):
 
 - FTP
 - SMB
