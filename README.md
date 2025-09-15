@@ -78,7 +78,11 @@ Below are some sample outputs for different protocol scans.
 ![LDAP Example](ForFtp/images/tool10.png)
 
 ### NTP
-![LDAP Example](ForFtp/images/tool13.png)
+![NTP Example](ForFtp/images/tool13.png)
+
+### SNMP
+![SNMP Example](ForFtp/images/tool12.png)
+
 
 
 ---
