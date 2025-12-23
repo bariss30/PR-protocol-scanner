@@ -362,42 +362,42 @@ func getPasswords(creds CredentialConfig) ([]string, error) {
 }
 
 func printHelp() {
-	// Renk kodları (utils paketinden de alabilirsin ama burada lokal tanımlı kalsın daha pratik)
-	// utils.Colorize kullanıyorsan oradan devam et, burayı string format ile yapıyoruz.
+	// Color codes (can also be taken from utils package, but kept local here for convenience)
+	// If you're using utils.Colorize, continue with that; here we format using strings.
 
-	fmt.Println("\n" + utils.BoldText("KULLANIM:"))
-	fmt.Printf("  soreers.exe -protocol <protokol> -t <hedef_ip> [seçenekler]\n")
+	fmt.Println("\n" + utils.BoldText("USAGE:"))
+	fmt.Printf("  soreers.exe -protocol <protocol> -t <target_ip> [options]\n")
 
-	fmt.Println("\n" + utils.BoldText("TEMEL AYARLAR:"))
-	fmt.Printf("  %-25s %s\n", "-protocol <isim>", "Taranacak servis (ftp, smb, ssh, telnet, mysql, vb.)")
-	fmt.Printf("  %-25s %s\n", "-t <ip>", "Tekil hedef IP adresi")
-	fmt.Printf("  %-25s %s\n", "-T <dosya>", "IP listesi içeren dosya yolu")
-	fmt.Printf("  %-25s %s\n", "-timeout <sn>", "Bağlantı zaman aşımı süresi (Varsayılan: 5)")
-	fmt.Printf("  %-25s %s\n", "-c <sayı>", "Eşzamanlı işlem (Thread/Goroutine) sayısı (Varsayılan: 10)")
+	fmt.Println("\n" + utils.BoldText("BASIC OPTIONS:"))
+	fmt.Printf("  %-25s %s\n", "-protocol <name>", "Target service to scan (ftp, smb, ssh, telnet, mysql, etc.)")
+	fmt.Printf("  %-25s %s\n", "-t <ip>", "Single target IP address")
+	fmt.Printf("  %-25s %s\n", "-T <file>", "File path containing a list of IP addresses")
+	fmt.Printf("  %-25s %s\n", "-timeout <sec>", "Connection timeout in seconds (Default: 5)")
+	fmt.Printf("  %-25s %s\n", "-c <number>", "Number of concurrent workers (Thread/Goroutine) (Default: 10)")
 
-	fmt.Println("\n" + utils.BoldText("BRUTE FORCE AYARLARI:"))
-	fmt.Printf("  %-25s %s\n", "-u <kullanıcı>", "Tekil kullanıcı adı")
-	fmt.Printf("  %-25s %s\n", "-p <şifre>", "Tekil şifre")
-	fmt.Printf("  %-25s %s\n", "-U <dosya>", "Kullanıcı adı listesi (Wordlist)")
-	fmt.Printf("  %-25s %s\n", "-P <dosya>", "Şifre listesi (Wordlist)")
-	fmt.Printf("  %-25s %s\n", "-A", "Anonim giriş denemesi yap (FTP/SMB için)")
+	fmt.Println("\n" + utils.BoldText("BRUTE FORCE OPTIONS:"))
+	fmt.Printf("  %-25s %s\n", "-u <username>", "Single username")
+	fmt.Printf("  %-25s %s\n", "-p <password>", "Single password")
+	fmt.Printf("  %-25s %s\n", "-U <file>", "Username wordlist file")
+	fmt.Printf("  %-25s %s\n", "-P <file>", "Password wordlist file")
+	fmt.Printf("  %-25s %s\n", "-A", "Attempt anonymous login (FTP/SMB only)")
 
-	fmt.Println("\n" + utils.BoldText(utils.Colorize("ÖNEMLİ UYARI (BRUTE FORCE):", utils.ColorYellow)))
-	fmt.Println("  Brute Force saldırısının başlaması için kullanıcı adı ve şifre belirtilmelidir.")
-	fmt.Println("  Eğer -u/-p veya -U/-P parametreleri girilmezse, sadece versiyon ve")
-	fmt.Println("  anonim giriş taraması yapılır, parola kırma işlemi " + utils.Colorize("ATLANIR.", utils.ColorRed))
+	fmt.Println("\n" + utils.BoldText(utils.Colorize("IMPORTANT WARNING (BRUTE FORCE):", utils.ColorYellow)))
+	fmt.Println("  To start a brute force attack, both username and password must be provided.")
+	fmt.Println("  If -u/-p or -U/-P parameters are not specified, only version detection and")
+	fmt.Println("  anonymous login checks will be performed, password cracking will be " + utils.Colorize("SKIPPED.", utils.ColorRed))
 
-	fmt.Println("\n" + utils.BoldText("ÖRNEK KULLANIMLAR:"))
-	fmt.Println("  1. Sadece FTP Versiyon Taraması:")
+	fmt.Println("\n" + utils.BoldText("EXAMPLE USAGE:"))
+	fmt.Println("  1. FTP Version Scan Only:")
 	fmt.Println("     soreers.exe -protocol ftp -t 192.168.1.10")
 	fmt.Println()
 	fmt.Println("  2. Telnet Brute Force:")
 	fmt.Println("     soreers.exe -protocol telnet -t 192.168.1.10 -U users.txt -P pass.txt")
 	fmt.Println()
-	fmt.Println("  3. Hızlı Redis Taraması (IP Listesi ile):")
+	fmt.Println("  3. Fast Redis Scan (Using IP List):")
 	fmt.Println("     soreers.exe -protocol redis -T iplist.txt -c 50")
 
-	fmt.Println("\n" + utils.BoldText("DESTEKLENEN PROTOKOLLER:"))
+	fmt.Println("\n" + utils.BoldText("SUPPORTED PROTOCOLS:"))
 	protocols := []string{"ftp", "ssh", "telnet", "smb", "mysql", "redis", "vnc", "pop3", "imap", "snmp", "ntp", "ipmi", "ldap"}
 	fmt.Print("  ")
 	for i, p := range protocols {
@@ -407,6 +407,7 @@ func printHelp() {
 		}
 	}
 	fmt.Println("\n")
+
 }
 
 func runNFS(config *ScanConfig) error {
@@ -605,7 +606,7 @@ func printBanner() {
 	fmt.Println(utils.BoldText(utils.Colorize("╚══════════════════════════════════════════════════════════════╝", utils.ColorCyan)))
 	fmt.Println()
 	// Renkli banner kodları buraya (kısaltıldı)
-	fmt.Println("FORFTP - Multi Protocol Vulnerability Scanner")
+
 }
 func runFTPBruteforceConcurrent(config *ScanConfig, users, passwords []string) error {
 	jobs := make(chan FTPJob)
