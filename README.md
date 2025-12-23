@@ -16,7 +16,7 @@ It identifies misconfigurations, weak credentials, and insecure deployments acro
 ---
 
 ##  Supported Protocols
-Each protocol has its own documentation in [`protocol_docs/`](ForFtp/protocol_docs):
+Each protocol has its own documentation in [`protocol_docs/`](Soreers/protocol_docs):
 
 - FTP
 - SMB
@@ -35,6 +35,6 @@ Each protocol has its own documentation in [`protocol_docs/`](ForFtp/protocol_do
 
 
 
-![help](ForFtp/images/tool1.png)
+![help](Soreers/images/help.png)
 
 
