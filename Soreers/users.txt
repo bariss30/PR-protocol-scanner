@@ -1,0 +1,8 @@
+ftpuser
+test
+kali
+kalikali
+selam
+scanner
+testuser
+telnetuser
